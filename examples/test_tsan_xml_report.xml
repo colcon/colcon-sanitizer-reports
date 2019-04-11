@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite suite-name="&quot;ament_cmake_lint_cmake&quot;">
+		<data-races actual-reported="721" potential-unique="10">
+			<data-race count="53603" location="&quot;/usr/include/asio/detail/impl/socket_ops.ipp:318&quot;"/>
+			<data-race count="121624" location="&quot;/usr/include/asio/detail/impl/reactive_socket_service_base.ipp:116&quot;"/>
+			<data-race count="68735" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/transport/UDPChannelResource.cpp:49&quot;"/>
+			<data-race count="1402" location="&quot;/root/tsan/ci/ws/src/ros2/rmw_fastrtps/rmw_fastrtps_shared_cpp/include/rmw_fastrtps_shared_cpp/custom_participant_info.hpp:118&quot;"/>
+			<data-race count="3463" location="&quot;/root/tsan/ci/ws/install/fastrtps/include/fastrtps/rtps/common/Guid.h:62&quot;"/>
+			<data-race count="5566" location="&quot;/usr/include/c++/7/bits/stl_pair.h:292&quot;"/>
+			<data-race count="2782" location="&quot;/usr/include/c++/7/bits/char_traits.h:350&quot;"/>
+			<data-race count="1391" location="&quot;/root/tsan/ci/ws/src/ros2/rmw_fastrtps/rmw_fastrtps_shared_cpp/include/rmw_fastrtps_shared_cpp/custom_participant_info.hpp:128&quot;"/>
+			<data-race count="675" location="&quot;/usr/include/c++/7/bits/basic_string.h:387&quot;"/>
+			<data-race count="1040" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/subscriber/SubscriberHistory.cpp:151&quot;"/>
+		</data-races>
+		<lock-order-inversion actual-reported="183" potential-unique="3">
+			<lock-order-inversion count="16177" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/rtps/writer/StatefulWriter.cpp:752&quot;"/>
+			<lock-order-inversion count="485" location="&quot;/root/tsan/ci/ws/src/ros2/rclcpp/rclcpp/src/rclcpp/node_interfaces/node_graph.cpp:310&quot;"/>
+			<lock-order-inversion count="174" location="&quot;/root/tsan/ci/ws/src/ros2/rclcpp/rclcpp/src/rclcpp/graph_listener.cpp:209&quot;"/>
+		</lock-order-inversion>
+		<heap-use-after-free actual-reported="0" potential-unique="0"/>
+		<signal-unsafe-call-inside-signal actual-reported="44" potential-unique="1">
+			<signal-unsafe-call-inside-signal count="990" location="&quot;/root/tsan/ci/ws/src/ros2/rcl/rcl/src/rcl/logging.c:132&quot;"/>
+		</signal-unsafe-call-inside-signal>
+		<signal-handler-spoils-errno actual-reported="44" potential-unique="8">
+			<signal-handler-spoils-errno count="772" location="&quot;/usr/include/c++/7/bits/basic_string.h:6424&quot;"/>
+			<signal-handler-spoils-errno count="47" location="&quot;/root/tsan/ci/ws/install/test_msgs/include/test_msgs/message_fixtures.hpp:421&quot;"/>
+			<signal-handler-spoils-errno count="35" location="&quot;/usr/include/c++/7/bits/alloc_traits.h:462&quot;"/>
+			<signal-handler-spoils-errno count="42" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/include/fastrtps/rtps/writer/timedevent/../../messages/RTPSMessageGroup.h:50&quot;"/>
+			<signal-handler-spoils-errno count="46" location="&quot;/usr/include/c++/7/bits/alloc_traits.h:436&quot;"/>
+			<signal-handler-spoils-errno count="38" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/rtps/history/CacheChangePool.cpp:74&quot;"/>
+			<signal-handler-spoils-errno count="7" location="&quot;/usr/include/c++/7/ext/atomicity.h:96&quot;"/>
+			<signal-handler-spoils-errno count="3" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/rtps/builtin/data/WriterProxyData.cpp:99&quot;"/>
+		</signal-handler-spoils-errno>
+	</testsuite>
+	<testsuite suite-name="&quot;ament_cmake_copyright&quot;">
+		<data-races actual-reported="721" potential-unique="10">
+			<data-race count="107206" location="&quot;/usr/include/asio/detail/impl/socket_ops.ipp:318&quot;"/>
+			<data-race count="243248" location="&quot;/usr/include/asio/detail/impl/reactive_socket_service_base.ipp:116&quot;"/>
+			<data-race count="137470" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/transport/UDPChannelResource.cpp:49&quot;"/>
+			<data-race count="2804" location="&quot;/root/tsan/ci/ws/src/ros2/rmw_fastrtps/rmw_fastrtps_shared_cpp/include/rmw_fastrtps_shared_cpp/custom_participant_info.hpp:118&quot;"/>
+			<data-race count="6926" location="&quot;/root/tsan/ci/ws/install/fastrtps/include/fastrtps/rtps/common/Guid.h:62&quot;"/>
+			<data-race count="11132" location="&quot;/usr/include/c++/7/bits/stl_pair.h:292&quot;"/>
+			<data-race count="5564" location="&quot;/usr/include/c++/7/bits/char_traits.h:350&quot;"/>
+			<data-race count="2782" location="&quot;/root/tsan/ci/ws/src/ros2/rmw_fastrtps/rmw_fastrtps_shared_cpp/include/rmw_fastrtps_shared_cpp/custom_participant_info.hpp:128&quot;"/>
+			<data-race count="1350" location="&quot;/usr/include/c++/7/bits/basic_string.h:387&quot;"/>
+			<data-race count="2080" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/subscriber/SubscriberHistory.cpp:151&quot;"/>
+		</data-races>
+		<lock-order-inversion actual-reported="183" potential-unique="3">
+			<lock-order-inversion count="32354" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/rtps/writer/StatefulWriter.cpp:752&quot;"/>
+			<lock-order-inversion count="970" location="&quot;/root/tsan/ci/ws/src/ros2/rclcpp/rclcpp/src/rclcpp/node_interfaces/node_graph.cpp:310&quot;"/>
+			<lock-order-inversion count="348" location="&quot;/root/tsan/ci/ws/src/ros2/rclcpp/rclcpp/src/rclcpp/graph_listener.cpp:209&quot;"/>
+		</lock-order-inversion>
+		<heap-use-after-free actual-reported="0" potential-unique="0"/>
+		<signal-unsafe-call-inside-signal actual-reported="44" potential-unique="1">
+			<signal-unsafe-call-inside-signal count="1980" location="&quot;/root/tsan/ci/ws/src/ros2/rcl/rcl/src/rcl/logging.c:132&quot;"/>
+		</signal-unsafe-call-inside-signal>
+		<signal-handler-spoils-errno actual-reported="44" potential-unique="8">
+			<signal-handler-spoils-errno count="1544" location="&quot;/usr/include/c++/7/bits/basic_string.h:6424&quot;"/>
+			<signal-handler-spoils-errno count="94" location="&quot;/root/tsan/ci/ws/install/test_msgs/include/test_msgs/message_fixtures.hpp:421&quot;"/>
+			<signal-handler-spoils-errno count="70" location="&quot;/usr/include/c++/7/bits/alloc_traits.h:462&quot;"/>
+			<signal-handler-spoils-errno count="84" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/include/fastrtps/rtps/writer/timedevent/../../messages/RTPSMessageGroup.h:50&quot;"/>
+			<signal-handler-spoils-errno count="92" location="&quot;/usr/include/c++/7/bits/alloc_traits.h:436&quot;"/>
+			<signal-handler-spoils-errno count="76" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/rtps/history/CacheChangePool.cpp:74&quot;"/>
+			<signal-handler-spoils-errno count="14" location="&quot;/usr/include/c++/7/ext/atomicity.h:96&quot;"/>
+			<signal-handler-spoils-errno count="6" location="&quot;/root/tsan/ci/ws/src/eProsima/Fast-RTPS/src/cpp/rtps/builtin/data/WriterProxyData.cpp:99&quot;"/>
+		</signal-handler-spoils-errno>
+	</testsuite>
+</testsuites>
