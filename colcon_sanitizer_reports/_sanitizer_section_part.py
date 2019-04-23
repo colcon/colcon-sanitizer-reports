@@ -102,6 +102,7 @@ class SanitizerSectionPart:
     relevant_stack_traces: Tuple[SanitizerSectionPartStackTrace, ...]
 
     def __init__(self, *, error_name: str, lines: Tuple[str, ...]) -> None:
+        """Gather relevant sanitizer stack traces."""
         relevant_stack_traces: List[SanitizerSectionPartStackTrace] = []
         find_relevant_stack_trace_begin_regexes = (
             _FIND_RELEVANT_STACK_TRACE_BEGIN_REGEXES_BY_ERROR_NAME[error_name]

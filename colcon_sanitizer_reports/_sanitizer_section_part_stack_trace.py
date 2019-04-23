@@ -55,7 +55,7 @@ class SanitizerSectionPartStackTrace:
     key: str
 
     def __init__(self, lines: Tuple[str, ...]) -> None:
-
+        """Find and assign stack trace key."""
         key = None
         for line in lines:
             match = _FIND_KEY_REGEX.match(line)
