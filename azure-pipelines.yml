@@ -1,0 +1,51 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+- master
+
+strategy:
+  maxParallel: 3
+  matrix:
+    Ubuntu-Py36:
+      imageName: 'ubuntu-latest'
+      python.version: '3.6'
+    Ubuntu-Py37:
+      imageName: 'ubuntu-latest'
+      python.version: '3.7'
+    Windows:
+      imageName: 'vs2017-win2016'
+      python.version: '3.7'
+    MacOS:
+      imageName: 'macos-10.14'
+      python.version: '3.7'
+
+
+pool:
+  vmImage: '$(imageName)'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    python -m pip install --upgrade pip
+    python -m pip install colcon-core colcon-output distro
+  displayName: 'Install dependencies'
+
+- script: |
+    python -m pip install -r requirements.txt
+  displayName: 'Install test dependencies'
+
+- script: |
+    pytest --junitxml=junit/test-results.xml
+  displayName: 'Run tests'
+
+- script: |
+    mypy .
+  displayName: 'Check types'
+  condition: 'always()'

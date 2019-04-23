@@ -32,6 +32,7 @@ _RESOURCE_NAMES = (
 
 
 class SanitizerLogParserFixture:
+
     def __init__(self, resource_name: str) -> None:
         self.resource_name = resource_name
         self._sanitizer_log_parser: Optional[SanitizerLogParser] = None
@@ -80,7 +81,7 @@ def sanitizer_log_parser_fixture(request) -> SanitizerLogParserFixture:
 
 def test_csv_has_expected_line_count(sanitizer_log_parser_fixture) -> None:
     assert len(list(sanitizer_log_parser_fixture.report_csv)) == \
-           len(list(sanitizer_log_parser_fixture.expected_csv))
+        len(list(sanitizer_log_parser_fixture.expected_csv))
 
 
 def test_csv_has_expected_lines(sanitizer_log_parser_fixture) -> None:
