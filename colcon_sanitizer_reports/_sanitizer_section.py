@@ -59,6 +59,7 @@ class SanitizerSection:
     parts: Tuple[SanitizerSectionPart, ...]
 
     def __init__(self, *, lines: Tuple[str, ...]) -> None:
+        """Construct the sanitizer section."""
         # Section error name comes after 'Sanitizer: ', and before any open paren or hex number.
         match = _FIND_ERROR_NAME_REGEX.match(lines[0])
         assert match is not None, (

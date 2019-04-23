@@ -29,12 +29,14 @@ class SanitizerReportEventHandler(EventHandlerExtensionPoint):
     ENABLED_BY_DEFAULT: bool = False
 
     def __init__(self) -> None:
+        """Initialize sanitizer log parser."""
         super().__init__()
         satisfies_version(EventHandlerExtensionPoint.EXTENSION_POINT_VERSION, '^1.0')
         self.enabled: bool = SanitizerReportEventHandler.ENABLED_BY_DEFAULT
         self._log_parser: SanitizerLogParser = SanitizerLogParser()
 
     def __call__(self, event) -> None:
+        """Handle the colcon event appropriately."""
         data = event[0]
         logger.debug('Received %s event', data.__class__.__name__)
 
@@ -42,6 +44,7 @@ class SanitizerReportEventHandler(EventHandlerExtensionPoint):
             self._handle(event)
 
     def _handle(self, event) -> None:
+        """Handle JobEnded event and parse the test log file."""
         job: JobEnded = event[1]
         self._log_parser.set_package(job.identifier)
 
