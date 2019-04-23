@@ -1,0 +1,3 @@
+package,error_name,key,count
+data_race_different_keys,data race,eprosima::fastrtps::rtps::UDPTransportInterface::CloseInputChannel(eprosima::fastrtps::rtps::Locator_t const&) /ros2_ws/src/eProsima/Fast-RTPS/src/cpp/transport/UDPTransportInterface.cpp:108 (libfastrtps.so.1+0xX),1
+data_race_different_keys,data race,"eprosima::fastrtps::rtps::UDPTransportInterface::Receive(eprosima::fastrtps::rtps::UDPChannelResource*, unsigned char*, unsigned int, unsigned int&, eprosima::fastrtps::rtps::Locator_t&) /ros2_ws/src/eProsima/Fast-RTPS/src/cpp/transport/UDPTransportInterface.cpp:412 (libfastrtps.so.1+0xX)",1

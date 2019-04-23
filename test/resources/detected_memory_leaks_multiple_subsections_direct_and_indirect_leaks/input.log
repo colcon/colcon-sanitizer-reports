@@ -1,0 +1,368 @@
+1:
+1: [----------] Global test environment tear-down
+1: [==========] 10 tests from 1 test case ran. (1185 ms total)
+1: [  PASSED  ] 10 tests.
+1:
+1: =================================================================
+1: ==5504==ERROR: LeakSanitizer: detected memory leaks
+1:
+<snip>
+1:
+1: Direct leak of 1 byte(s) in 1 object(s) allocated from:
+1:     #0 0x7fbe597e5b50 in __interceptor_malloc (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xdeb50)
+1:     #1 0x7fbe5904a737 in rosidl_generator_c__octet__Sequence__init (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0x4737)
+1:     #2 0x7fbe5904c21a in rosidl_generator_c__byte__Sequence__init (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0x621a)
+1:     #3 0x557ca330c232 in void get_message<test_msgs__msg__DynamicArrayPrimitives>(test_msgs__msg__DynamicArrayPrimitives*, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x29232)
+1:     #4 0x557ca330e7eb in void verify_message<test_msgs__msg__DynamicArrayPrimitives>(test_msgs__msg__DynamicArrayPrimitives&, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x2b7eb)
+1:     #5 0x557ca331aaaa in void verify_message<test_msgs__msg__DynamicArrayPrimitivesNested>(test_msgs__msg__DynamicArrayPrimitivesNested&, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x37aaa)
+1:     #6 0x557ca33565e9 in void TestMessagesFixture::test_message_type<test_msgs__msg__DynamicArrayPrimitivesNested>(char const*, rosidl_message_type_support_t const*, rcl_context_t*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x735e9)
+1:     #7 0x557ca331ab7a in TestMessagesFixture_test_dynamicarraynestedprimitives_Test::TestBody() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x37b7a)
+1:     #8 0x557ca33c5769 in void testing::internal::HandleSehExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xe2769)
+1:     #9 0x557ca33b8887 in void testing::internal::HandleExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xd5887)
+1:     #10 0x557ca337292f in testing::Test::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x8f92f)
+1:     #11 0x557ca3373d39 in testing::TestInfo::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x90d39)
+1:     #12 0x557ca33748b6 in testing::TestCase::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x918b6)
+1:     #13 0x557ca3385ac8 in testing::internal::UnitTestImpl::RunAllTests() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xa2ac8)
+1:     #14 0x557ca33c8222 in bool testing::internal::HandleSehExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xe5222)
+1:     #15 0x557ca33baa76 in bool testing::internal::HandleExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xd7a76)
+1:     #16 0x557ca3382a72 in testing::UnitTest::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x9fa72)
+1:     #17 0x557ca3360752 in RUN_ALL_TESTS() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x7d752)
+1:     #18 0x557ca3360698 in main (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x7d698)
+1:     #19 0x7fbe5808db96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+1:
+1: Direct leak of 1 byte(s) in 1 object(s) allocated from:
+1:     #0 0x7fbe597e5b50 in __interceptor_malloc (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xdeb50)
+1:     #1 0x7fbe5904a441 in rosidl_generator_c__boolean__Sequence__init (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0x4441)
+1:     #2 0x7fbe5904c1da in rosidl_generator_c__bool__Sequence__init (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0x61da)
+1:     #3 0x557ca330c21a in void get_message<test_msgs__msg__DynamicArrayPrimitives>(test_msgs__msg__DynamicArrayPrimitives*, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x2921a)
+1:     #4 0x557ca330e7eb in void verify_message<test_msgs__msg__DynamicArrayPrimitives>(test_msgs__msg__DynamicArrayPrimitives&, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x2b7eb)
+1:     #5 0x557ca331aaaa in void verify_message<test_msgs__msg__DynamicArrayPrimitivesNested>(test_msgs__msg__DynamicArrayPrimitivesNested&, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x37aaa)
+1:     #6 0x557ca33565e9 in void TestMessagesFixture::test_message_type<test_msgs__msg__DynamicArrayPrimitivesNested>(char const*, rosidl_message_type_support_t const*, rcl_context_t*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x735e9)
+1:     #7 0x557ca331ab7a in TestMessagesFixture_test_dynamicarraynestedprimitives_Test::TestBody() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x37b7a)
+1:     #8 0x557ca33c5769 in void testing::internal::HandleSehExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xe2769)
+1:     #9 0x557ca33b8887 in void testing::internal::HandleExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xd5887)
+1:     #10 0x557ca337292f in testing::Test::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x8f92f)
+1:     #11 0x557ca3373d39 in testing::TestInfo::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x90d39)
+1:     #12 0x557ca33748b6 in testing::TestCase::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x918b6)
+1:     #13 0x557ca3385ac8 in testing::internal::UnitTestImpl::RunAllTests() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xa2ac8)
+1:     #14 0x557ca33c8222 in bool testing::internal::HandleSehExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xe5222)
+1:     #15 0x557ca33baa76 in bool testing::internal::HandleExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xd7a76)
+1:     #16 0x557ca3382a72 in testing::UnitTest::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x9fa72)
+1:     #17 0x557ca3360752 in RUN_ALL_TESTS() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x7d752)
+1:     #18 0x557ca3360698 in main (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x7d698)
+1:     #19 0x7fbe5808db96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+1:
+<snip>
+1:
+1: Indirect leak of 1 byte(s) in 1 object(s) allocated from:
+1:     #0 0x7fbe597e5f40 in realloc (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xdef40)
+1:     #1 0x7fbe5904c956 in rosidl_generator_c__String__assignn (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0x6956)
+1:     #2 0x7fbe5904ca90 in rosidl_generator_c__String__assign (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0x6a90)
+1:     #3 0x557ca330d6e5 in void get_message<test_msgs__msg__DynamicArrayPrimitives>(test_msgs__msg__DynamicArrayPrimitives*, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x2a6e5)
+1:     #4 0x557ca330e7eb in void verify_message<test_msgs__msg__DynamicArrayPrimitives>(test_msgs__msg__DynamicArrayPrimitives&, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x2b7eb)
+1:     #5 0x557ca3340723 in void TestMessagesFixture::test_message_type<test_msgs__msg__DynamicArrayPrimitives>(char const*, rosidl_message_type_support_t const*, rcl_context_t*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x5d723)
+1:     #6 0x557ca33110d6 in TestMessagesFixture_test_dynamicarrayprimitives_Test::TestBody() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x2e0d6)
+1:     #7 0x557ca33c5769 in void testing::internal::HandleSehExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xe2769)
+1:     #8 0x557ca33b8887 in void testing::internal::HandleExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xd5887)
+1:     #9 0x557ca337292f in testing::Test::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x8f92f)
+1:     #10 0x557ca3373d39 in testing::TestInfo::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x90d39)
+1:     #11 0x557ca33748b6 in testing::TestCase::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x918b6)
+1:     #12 0x557ca3385ac8 in testing::internal::UnitTestImpl::RunAllTests() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xa2ac8)
+1:     #13 0x557ca33c8222 in bool testing::internal::HandleSehExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xe5222)
+1:     #14 0x557ca33baa76 in bool testing::internal::HandleExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xd7a76)
+1:     #15 0x557ca3382a72 in testing::UnitTest::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x9fa72)
+1:     #16 0x557ca3360752 in RUN_ALL_TESTS() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x7d752)
+1:     #17 0x557ca3360698 in main (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x7d698)
+1:     #18 0x7fbe5808db96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+1:
+1: Indirect leak of 1 byte(s) in 1 object(s) allocated from:
+1:     #0 0x7fbe597e5f40 in realloc (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xdef40)
+1:     #1 0x7fbe5904c956 in rosidl_generator_c__String__assignn (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0x6956)
+1:     #2 0x7fbe5904ca90 in rosidl_generator_c__String__assign (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0x6a90)
+1:     #3 0x557ca330505d in void get_message<test_msgs__msg__Primitives>(test_msgs__msg__Primitives*, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x2205d)
+1:     #4 0x557ca331125b in void get_message<test_msgs__msg__DynamicArrayNested>(test_msgs__msg__DynamicArrayNested*, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x2e25b)
+1:     #5 0x557ca33117a5 in void verify_message<test_msgs__msg__DynamicArrayNested>(test_msgs__msg__DynamicArrayNested&, unsigned long) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x2e7a5)
+1:     #6 0x557ca3345ed3 in void TestMessagesFixture::test_message_type<test_msgs__msg__DynamicArrayNested>(char const*, rosidl_message_type_support_t const*, rcl_context_t*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x62ed3)
+1:     #7 0x557ca3313cac in TestMessagesFixture_test_dynamicarraynested_Test::TestBody() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x30cac)
+1:     #8 0x557ca33c5769 in void testing::internal::HandleSehExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xe2769)
+1:     #9 0x557ca33b8887 in void testing::internal::HandleExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xd5887)
+1:     #10 0x557ca337292f in testing::Test::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x8f92f)
+1:     #11 0x557ca3373d39 in testing::TestInfo::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x90d39)
+1:     #12 0x557ca33748b6 in testing::TestCase::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x918b6)
+1:     #13 0x557ca3385ac8 in testing::internal::UnitTestImpl::RunAllTests() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xa2ac8)
+1:     #14 0x557ca33c8222 in bool testing::internal::HandleSehExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xe5222)
+1:     #15 0x557ca33baa76 in bool testing::internal::HandleExceptionsInMethodIfSupported<testing::internal::UnitTestImpl, bool>(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0xd7a76)
+1:     #16 0x557ca3382a72 in testing::UnitTest::Run() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x9fa72)
+1:     #17 0x557ca3360752 in RUN_ALL_TESTS() (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x7d752)
+1:     #18 0x557ca3360698 in main (/ros2_build/test_communication/test_messages_c__rmw_fastrtps_cpp+0x7d698)
+1:     #19 0x7fbe5808db96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+1:
+1: SUMMARY: AddressSanitizer: 554924 byte(s) leaked in 6385 allocation(s).
+1: -- run_test.py: return code 1
+1: -- run_test.py: inject classname prefix into gtest result file '/ros2_build/test_communication/test_results/test_communication/test_messages_c__rmw_fastrtps_cpp.gtest.xml'
+1: -- run_test.py: verify result file '/ros2_build/test_communication/test_results/test_communication/test_messages_c__rmw_fastrtps_cpp.gtest.xml'
+ 1/38 Test  #1: test_messages_c__rmw_fastrtps_cpp ..........................................................***Failed    1.41 sec
+test 2
+      Start  2: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayNested
+
+2: Test command: /usr/bin/python3 "-u" "/ros2_install/ament_cmake_test/share/ament_cmake_test/cmake/run_test.py" "/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayNested.xml" "--package-name" "test_communication" "--generate-result-on-success" "--env" "RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp" "RMW_IMPLEMENTATION=rmw_fastrtps_cpp" "--append-env" "LD_LIBRARY_PATH=/ros2_build/test_communication" "--command" "/ros2_build/test_communication/test_publisher_subscriber_cpp" "BoundedArrayNested"
+2: Test timeout computed to be: 15
+2: -- run_test.py: extra environment variables:
+2:  - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+2:  - RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp
+2: -- run_test.py: extra environment variables to append:
+2:  - LD_LIBRARY_PATH+=/ros2_build/test_communication
+2: -- run_test.py: invoking following command in 'ros2_src/ros2/system_tests/test_communication':
+2:  - /ros2_build/test_communication/test_publisher_subscriber_cpp BoundedArrayNested
+2: publishing message #1
+2: received message #1 of 1
+2: published and subscribed for 0.143388 seconds
+2:
+2: =================================================================
+2: ==5584==ERROR: LeakSanitizer: detected memory leaks
+2:
+2: Direct leak of 64 byte(s) in 1 object(s) allocated from:
+2:     #0 0x7f15cb180458 in operator new(unsigned long) (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xe0458)
+2:     #1 0x7f15cac0d3fb in rclcpp::NodeOptions::get_rcl_node_options() const (/ros2_install/rclcpp/lib/librclcpp.so+0x4273fb)
+2:     #2 0x7f15cac1c63d in rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x43663d)
+2:     #3 0x7f15cac02cfe in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41ccfe)
+2:     #4 0x7f15cac02922 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41c922)
+2:     #5 0x56388830095a in void __gnu_cxx::new_allocator<rclcpp::Node>::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1e395a)
+2:     #6 0x5638882e34f1 in void std::allocator_traits<std::allocator<rclcpp::Node> >::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>&, rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1c64f1)
+2:     #7 0x5638882b40eb in std::_Sp_counted_ptr_inplace<rclcpp::Node, std::allocator<rclcpp::Node>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1970eb)
+2:     #8 0x5638882834a6 in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, rclcpp::Node*, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1664a6)
+2:     #9 0x5638882462d8 in std::__shared_ptr<rclcpp::Node, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1292d8)
+2:     #10 0x56388820dd28 in std::shared_ptr<rclcpp::Node>::shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xf0d28)
+2:     #11 0x5638881e5b94 in std::shared_ptr<rclcpp::Node> std::allocate_shared<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xc8b94)
+2:     #12 0x5638881bb5d6 in std::shared_ptr<rclcpp::Node> std::make_shared<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x9e5d6)
+2:     #13 0x5638881846ec in std::shared_ptr<rclcpp::Node> rclcpp::Node::make_shared<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x676ec)
+2:     #14 0x563888172075 in main (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x55075)
+2:     #15 0x7f15c97adb96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+2:
+2: SUMMARY: AddressSanitizer: 64 byte(s) leaked in 1 allocation(s).
+2: -- run_test.py: return code 1
+2: -- run_test.py: generate result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayNested.xml' with failed test
+2: -- run_test.py: verify result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayNested.xml'
+ 2/38 Test  #2: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayNested ........................***Failed    0.32 sec
+test 3
+      Start  3: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitives
+
+3: Test command: /usr/bin/python3 "-u" "/ros2_install/ament_cmake_test/share/ament_cmake_test/cmake/run_test.py" "/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitives.xml" "--package-name" "test_communication" "--generate-result-on-success" "--env" "RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp" "RMW_IMPLEMENTATION=rmw_fastrtps_cpp" "--append-env" "LD_LIBRARY_PATH=/ros2_build/test_communication" "--command" "/ros2_build/test_communication/test_publisher_subscriber_cpp" "BoundedArrayPrimitives"
+3: Test timeout computed to be: 15
+3: -- run_test.py: extra environment variables:
+3:  - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+3:  - RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp
+3: -- run_test.py: extra environment variables to append:
+3:  - LD_LIBRARY_PATH+=/ros2_build/test_communication
+3: -- run_test.py: invoking following command in 'ros2_src/ros2/system_tests/test_communication':
+3:  - /ros2_build/test_communication/test_publisher_subscriber_cpp BoundedArrayPrimitives
+3: publishing message #1
+3: received message #1 of 2
+3: publishing message #2
+3: received message #2 of 2
+3: published and subscribed for 0.141773 seconds
+3:
+3: =================================================================
+3: ==5595==ERROR: LeakSanitizer: detected memory leaks
+3:
+3: Direct leak of 64 byte(s) in 1 object(s) allocated from:
+3:     #0 0x7fb72a0fc458 in operator new(unsigned long) (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xe0458)
+3:     #1 0x7fb729b893fb in rclcpp::NodeOptions::get_rcl_node_options() const (/ros2_install/rclcpp/lib/librclcpp.so+0x4273fb)
+3:     #2 0x7fb729b9863d in rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x43663d)
+3:     #3 0x7fb729b7ecfe in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41ccfe)
+3:     #4 0x7fb729b7e922 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41c922)
+3:     #5 0x5627131c395a in void __gnu_cxx::new_allocator<rclcpp::Node>::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1e395a)
+3:     #6 0x5627131a64f1 in void std::allocator_traits<std::allocator<rclcpp::Node> >::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>&, rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1c64f1)
+3:     #7 0x5627131770eb in std::_Sp_counted_ptr_inplace<rclcpp::Node, std::allocator<rclcpp::Node>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1970eb)
+3:     #8 0x5627131464a6 in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, rclcpp::Node*, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1664a6)
+3:     #9 0x5627131092d8 in std::__shared_ptr<rclcpp::Node, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1292d8)
+3:     #10 0x5627130d0d28 in std::shared_ptr<rclcpp::Node>::shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xf0d28)
+3:     #11 0x5627130a8b94 in std::shared_ptr<rclcpp::Node> std::allocate_shared<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xc8b94)
+3:     #12 0x56271307e5d6 in std::shared_ptr<rclcpp::Node> std::make_shared<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x9e5d6)
+3:     #13 0x5627130476ec in std::shared_ptr<rclcpp::Node> rclcpp::Node::make_shared<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x676ec)
+3:     #14 0x562713035075 in main (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x55075)
+3:     #15 0x7fb728729b96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+3:
+3: SUMMARY: AddressSanitizer: 64 byte(s) leaked in 1 allocation(s).
+3: -- run_test.py: return code 1
+3: -- run_test.py: generate result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitives.xml' with failed test
+3: -- run_test.py: verify result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitives.xml'
+ 3/38 Test  #3: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitives ....................***Failed    0.31 sec
+test 4
+      Start  4: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitivesNested
+
+4: Test command: /usr/bin/python3 "-u" "/ros2_install/ament_cmake_test/share/ament_cmake_test/cmake/run_test.py" "/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitivesNested.xml" "--package-name" "test_communication" "--generate-result-on-success" "--env" "RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp" "RMW_IMPLEMENTATION=rmw_fastrtps_cpp" "--append-env" "LD_LIBRARY_PATH=/ros2_build/test_communication" "--command" "/ros2_build/test_communication/test_publisher_subscriber_cpp" "BoundedArrayPrimitivesNested"
+4: Test timeout computed to be: 15
+4: -- run_test.py: extra environment variables:
+4:  - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+4:  - RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp
+4: -- run_test.py: extra environment variables to append:
+4:  - LD_LIBRARY_PATH+=/ros2_build/test_communication
+4: -- run_test.py: invoking following command in 'ros2_src/ros2/system_tests/test_communication':
+4:  - /ros2_build/test_communication/test_publisher_subscriber_cpp BoundedArrayPrimitivesNested
+4: publishing message #1
+4: received message #1 of 1
+4: published and subscribed for 0.152357 seconds
+4:
+4: =================================================================
+4: ==5605==ERROR: LeakSanitizer: detected memory leaks
+4:
+4: Direct leak of 64 byte(s) in 1 object(s) allocated from:
+4:     #0 0x7fb7b52b0458 in operator new(unsigned long) (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xe0458)
+4:     #1 0x7fb7b4d3d3fb in rclcpp::NodeOptions::get_rcl_node_options() const (/ros2_install/rclcpp/lib/librclcpp.so+0x4273fb)
+4:     #2 0x7fb7b4d4c63d in rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x43663d)
+4:     #3 0x7fb7b4d32cfe in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41ccfe)
+4:     #4 0x7fb7b4d32922 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41c922)
+4:     #5 0x55ba0fbfd95a in void __gnu_cxx::new_allocator<rclcpp::Node>::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1e395a)
+4:     #6 0x55ba0fbe04f1 in void std::allocator_traits<std::allocator<rclcpp::Node> >::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>&, rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1c64f1)
+4:     #7 0x55ba0fbb10eb in std::_Sp_counted_ptr_inplace<rclcpp::Node, std::allocator<rclcpp::Node>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1970eb)
+4:     #8 0x55ba0fb804a6 in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, rclcpp::Node*, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1664a6)
+4:     #9 0x55ba0fb432d8 in std::__shared_ptr<rclcpp::Node, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1292d8)
+4:     #10 0x55ba0fb0ad28 in std::shared_ptr<rclcpp::Node>::shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xf0d28)
+4:     #11 0x55ba0fae2b94 in std::shared_ptr<rclcpp::Node> std::allocate_shared<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xc8b94)
+4:     #12 0x55ba0fab85d6 in std::shared_ptr<rclcpp::Node> std::make_shared<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x9e5d6)
+4:     #13 0x55ba0fa816ec in std::shared_ptr<rclcpp::Node> rclcpp::Node::make_shared<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x676ec)
+4:     #14 0x55ba0fa6f075 in main (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x55075)
+4:     #15 0x7fb7b38ddb96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+4:
+4: SUMMARY: AddressSanitizer: 64 byte(s) leaked in 1 allocation(s).
+4: -- run_test.py: return code 1
+4: -- run_test.py: generate result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitivesNested.xml' with failed test
+4: -- run_test.py: verify result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitivesNested.xml'
+ 4/38 Test  #4: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__BoundedArrayPrimitivesNested ..............***Failed    0.32 sec
+test 5
+      Start  5: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__Builtins
+
+5: Test command: /usr/bin/python3 "-u" "/ros2_install/ament_cmake_test/share/ament_cmake_test/cmake/run_test.py" "/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__Builtins.xml" "--package-name" "test_communication" "--generate-result-on-success" "--env" "RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp" "RMW_IMPLEMENTATION=rmw_fastrtps_cpp" "--append-env" "LD_LIBRARY_PATH=/ros2_build/test_communication" "--command" "/ros2_build/test_communication/test_publisher_subscriber_cpp" "Builtins"
+5: Test timeout computed to be: 15
+5: -- run_test.py: extra environment variables:
+5:  - RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp
+5:  - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+5: -- run_test.py: extra environment variables to append:
+5:  - LD_LIBRARY_PATH+=/ros2_build/test_communication
+5: -- run_test.py: invoking following command in 'ros2_src/ros2/system_tests/test_communication':
+5:  - /ros2_build/test_communication/test_publisher_subscriber_cpp Builtins
+5: publishing message #1
+5: received message #1 of 1
+5: published and subscribed for 0.142929 seconds
+5:
+5: =================================================================
+5: ==5626==ERROR: LeakSanitizer: detected memory leaks
+5:
+5: Direct leak of 64 byte(s) in 1 object(s) allocated from:
+5:     #0 0x7f2b28e02458 in operator new(unsigned long) (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xe0458)
+5:     #1 0x7f2b2888f3fb in rclcpp::NodeOptions::get_rcl_node_options() const (/ros2_install/rclcpp/lib/librclcpp.so+0x4273fb)
+5:     #2 0x7f2b2889e63d in rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x43663d)
+5:     #3 0x7f2b28884cfe in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41ccfe)
+5:     #4 0x7f2b28884922 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41c922)
+5:     #5 0x55bfbd37995a in void __gnu_cxx::new_allocator<rclcpp::Node>::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1e395a)
+5:     #6 0x55bfbd35c4f1 in void std::allocator_traits<std::allocator<rclcpp::Node> >::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>&, rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1c64f1)
+5:     #7 0x55bfbd32d0eb in std::_Sp_counted_ptr_inplace<rclcpp::Node, std::allocator<rclcpp::Node>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1970eb)
+5:     #8 0x55bfbd2fc4a6 in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, rclcpp::Node*, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1664a6)
+5:     #9 0x55bfbd2bf2d8 in std::__shared_ptr<rclcpp::Node, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1292d8)
+5:     #10 0x55bfbd286d28 in std::shared_ptr<rclcpp::Node>::shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xf0d28)
+5:     #11 0x55bfbd25eb94 in std::shared_ptr<rclcpp::Node> std::allocate_shared<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xc8b94)
+5:     #12 0x55bfbd2345d6 in std::shared_ptr<rclcpp::Node> std::make_shared<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x9e5d6)
+5:     #13 0x55bfbd1fd6ec in std::shared_ptr<rclcpp::Node> rclcpp::Node::make_shared<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x676ec)
+5:     #14 0x55bfbd1eb075 in main (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x55075)
+5:     #15 0x7f2b2742fb96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+5:
+5: SUMMARY: AddressSanitizer: 64 byte(s) leaked in 1 allocation(s).
+5: -- run_test.py: return code 1
+5: -- run_test.py: generate result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__Builtins.xml' with failed test
+5: -- run_test.py: verify result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__Builtins.xml'
+ 5/38 Test  #5: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__Builtins ..................................***Failed    0.32 sec
+test 6
+      Start  6: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayNested
+
+6: Test command: /usr/bin/python3 "-u" "/ros2_install/ament_cmake_test/share/ament_cmake_test/cmake/run_test.py" "/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayNested.xml" "--package-name" "test_communication" "--generate-result-on-success" "--env" "RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp" "RMW_IMPLEMENTATION=rmw_fastrtps_cpp" "--append-env" "LD_LIBRARY_PATH=/ros2_build/test_communication" "--command" "/ros2_build/test_communication/test_publisher_subscriber_cpp" "DynamicArrayNested"
+6: Test timeout computed to be: 15
+6: -- run_test.py: extra environment variables:
+6:  - RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp
+6:  - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+6: -- run_test.py: extra environment variables to append:
+6:  - LD_LIBRARY_PATH+=/ros2_build/test_communication
+6: -- run_test.py: invoking following command in 'ros2_src/ros2/system_tests/test_communication':
+6:  - /ros2_build/test_communication/test_publisher_subscriber_cpp DynamicArrayNested
+6: publishing message #1
+6: received message #1 of 1
+6: published and subscribed for 0.141053 seconds
+6:
+6: =================================================================
+6: ==5655==ERROR: LeakSanitizer: detected memory leaks
+6:
+6: Direct leak of 64 byte(s) in 1 object(s) allocated from:
+6:     #0 0x7f39a606b458 in operator new(unsigned long) (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xe0458)
+6:     #1 0x7f39a5af83fb in rclcpp::NodeOptions::get_rcl_node_options() const (/ros2_install/rclcpp/lib/librclcpp.so+0x4273fb)
+6:     #2 0x7f39a5b0763d in rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x43663d)
+6:     #3 0x7f39a5aedcfe in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41ccfe)
+6:     #4 0x7f39a5aed922 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41c922)
+6:     #5 0x55ac8542595a in void __gnu_cxx::new_allocator<rclcpp::Node>::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1e395a)
+6:     #6 0x55ac854084f1 in void std::allocator_traits<std::allocator<rclcpp::Node> >::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>&, rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1c64f1)
+6:     #7 0x55ac853d90eb in std::_Sp_counted_ptr_inplace<rclcpp::Node, std::allocator<rclcpp::Node>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1970eb)
+6:     #8 0x55ac853a84a6 in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, rclcpp::Node*, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1664a6)
+6:     #9 0x55ac8536b2d8 in std::__shared_ptr<rclcpp::Node, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1292d8)
+6:     #10 0x55ac85332d28 in std::shared_ptr<rclcpp::Node>::shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xf0d28)
+6:     #11 0x55ac8530ab94 in std::shared_ptr<rclcpp::Node> std::allocate_shared<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xc8b94)
+6:     #12 0x55ac852e05d6 in std::shared_ptr<rclcpp::Node> std::make_shared<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x9e5d6)
+6:     #13 0x55ac852a96ec in std::shared_ptr<rclcpp::Node> rclcpp::Node::make_shared<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x676ec)
+6:     #14 0x55ac85297075 in main (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x55075)
+6:     #15 0x7f39a4698b96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+6:
+6: SUMMARY: AddressSanitizer: 64 byte(s) leaked in 1 allocation(s).
+6: -- run_test.py: return code 1
+6: -- run_test.py: generate result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayNested.xml' with failed test
+6: -- run_test.py: verify result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayNested.xml'
+ 6/38 Test  #6: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayNested ........................***Failed    0.33 sec
+test 7
+      Start  7: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayPrimitives
+
+7: Test command: /usr/bin/python3 "-u" "/ros2_install/ament_cmake_test/share/ament_cmake_test/cmake/run_test.py" "/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayPrimitives.xml" "--package-name" "test_communication" "--generate-result-on-success" "--env" "RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp" "RMW_IMPLEMENTATION=rmw_fastrtps_cpp" "--append-env" "LD_LIBRARY_PATH=/ros2_build/test_communication" "--command" "/ros2_build/test_communication/test_publisher_subscriber_cpp" "DynamicArrayPrimitives"
+7: Test timeout computed to be: 15
+7: -- run_test.py: extra environment variables:
+7:  - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+7:  - RCL_ASSERT_RMW_ID_MATCHES=rmw_fastrtps_cpp
+7: -- run_test.py: extra environment variables to append:
+7:  - LD_LIBRARY_PATH+=/ros2_build/test_communication
+7: -- run_test.py: invoking following command in 'ros2_src/ros2/system_tests/test_communication':
+7:  - /ros2_build/test_communication/test_publisher_subscriber_cpp DynamicArrayPrimitives
+7: publishing message #1
+7: received message #1 of 5
+7: publishing message #2
+7: received message #2 of 5
+7: publishing message #3
+7: received message #3 of 5
+7: publishing message #4
+7: received message #4 of 5
+7: publishing message #5
+7: received message #5 of 5
+7: published and subscribed for 0.143538 seconds
+7:
+7: =================================================================
+7: ==5683==ERROR: LeakSanitizer: detected memory leaks
+7:
+7: Direct leak of 64 byte(s) in 1 object(s) allocated from:
+7:     #0 0x7fa7c94d1458 in operator new(unsigned long) (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xe0458)
+7:     #1 0x7fa7c8f5e3fb in rclcpp::NodeOptions::get_rcl_node_options() const (/ros2_install/rclcpp/lib/librclcpp.so+0x4273fb)
+7:     #2 0x7fa7c8f6d63d in rclcpp::node_interfaces::NodeBase::NodeBase(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x43663d)
+7:     #3 0x7fa7c8f53cfe in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41ccfe)
+7:     #4 0x7fa7c8f53922 in rclcpp::Node::Node(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, rclcpp::NodeOptions const&) (/ros2_install/rclcpp/lib/librclcpp.so+0x41c922)
+7:     #5 0x55b04523895a in void __gnu_cxx::new_allocator<rclcpp::Node>::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1e395a)
+7:     #6 0x55b04521b4f1 in void std::allocator_traits<std::allocator<rclcpp::Node> >::construct<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>&, rclcpp::Node*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1c64f1)
+7:     #7 0x55b0451ec0eb in std::_Sp_counted_ptr_inplace<rclcpp::Node, std::allocator<rclcpp::Node>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1970eb)
+7:     #8 0x55b0451bb4a6 in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, rclcpp::Node*, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1664a6)
+7:     #9 0x55b04517e2d8 in std::__shared_ptr<rclcpp::Node, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x1292d8)
+7:     #10 0x55b045145d28 in std::shared_ptr<rclcpp::Node>::shared_ptr<std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::_Sp_make_shared_tag, std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xf0d28)
+7:     #11 0x55b04511db94 in std::shared_ptr<rclcpp::Node> std::allocate_shared<rclcpp::Node, std::allocator<rclcpp::Node>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::allocator<rclcpp::Node> const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0xc8b94)
+7:     #12 0x55b0450f35d6 in std::shared_ptr<rclcpp::Node> std::make_shared<rclcpp::Node, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x9e5d6)
+7:     #13 0x55b0450bc6ec in std::shared_ptr<rclcpp::Node> rclcpp::Node::make_shared<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x676ec)
+7:     #14 0x55b0450aa075 in main (/ros2_build/test_communication/test_publisher_subscriber_cpp+0x55075)
+7:     #15 0x7fa7c7afeb96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+7:
+7: SUMMARY: AddressSanitizer: 64 byte(s) leaked in 1 allocation(s).
+7: -- run_test.py: return code 1
+7: -- run_test.py: generate result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayPrimitives.xml' with failed test
+7: -- run_test.py: verify result file '/ros2_build/test_communication/test_results/test_communication/test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayPrimitives.xml'
+ 7/38 Test  #7: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayPrimitives ....................***Failed    0.31 sec
+test 8
+      Start  8: test_publisher_subscriber_cpp__rmw_fastrtps_cpp__DynamicArrayPrimitivesNested

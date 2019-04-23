@@ -1,0 +1,4 @@
+package,error_name,key,count
+detected_memory_leaks_multiple_subsections_direct_and_indirect_leaks,detected memory leaks,rosidl_generator_c__octet__Sequence__init (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0xX),1
+detected_memory_leaks_multiple_subsections_direct_and_indirect_leaks,detected memory leaks,rosidl_generator_c__boolean__Sequence__init (/ros2_install/rosidl_generator_c/lib/librosidl_generator_c.so+0xX),1
+detected_memory_leaks_multiple_subsections_direct_and_indirect_leaks,detected memory leaks,rclcpp::NodeOptions::get_rcl_node_options() const (/ros2_install/rclcpp/lib/librclcpp.so+0xX),6

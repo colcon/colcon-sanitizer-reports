@@ -1,0 +1,22 @@
+1: [       OK ] TestClient.async_cancel_some_goals (356 ms)
+1: [----------] 7 tests from TestClient (2014 ms total)
+1:
+1: [----------] Global test environment tear-down
+1: [==========] 7 tests from 1 test case ran. (2014 ms total)
+1: [  PASSED  ] 7 tests.
+1: ASAN:DEADLYSIGNAL
+1: =================================================================
+1: ==5054==ERROR: AddressSanitizer: SEGV on unknown address 0x60304d80008f (pc 0x7f619e2555a1 bp 0x7ffe6cd4f930 sp 0x7ffe6cd4f0a8 T0)
+1: ==5054==The signal is caused by a READ memory access.
+1:     #0 0x7f619e2555a0  (/lib/x86_64-linux-gnu/libc.so.6+0x18e5a0)
+1:     #1 0x7f61a031557b  (/usr/lib/x86_64-linux-gnu/libasan.so.4+0x5157b)
+1:     #2 0x7f619ea6d6e5 in rcutils_logging_get_logger_effective_level (/ros2_install/rcutils/lib/librcutils.so+0x146e5)
+1:     #3 0x7f619ea6e178 in rcutils_logging_logger_is_enabled_for (/ros2_install/rcutils/lib/librcutils.so+0x15178)
+1:     #4 0x7f619f689d1e in rclcpp::SignalHandler::uninstall() (/ros2_install/rclcpp/lib/librclcpp.so+0x55bd1e)
+1:     #5 0x7f619f68a2ee in rclcpp::SignalHandler::~SignalHandler() (/ros2_install/rclcpp/lib/librclcpp.so+0x55c2ee)
+1:     #6 0x7f619e10a040  (/lib/x86_64-linux-gnu/libc.so.6+0x43040)
+1:     #7 0x7f619e10a139 in exit (/lib/x86_64-linux-gnu/libc.so.6+0x43139)
+1:     #8 0x7f619e0e8b9d in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b9d)
+1:     #9 0x5628c0f80cd9 in _start (/ros2_build/rclcpp_action/test_client+0x4acd9)
+1:
+1: AddressSanitizer can not provide additional info.
