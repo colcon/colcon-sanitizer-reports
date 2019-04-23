@@ -1,2 +1,2 @@
-package,error_name,key,count
+package,error_name,stack_trace_key,count
 lock_order_inversion_same_key,lock-order-inversion,eprosima::fastrtps::rtps::StatefulWriter::check_acked_status() /ros2_ws/src/eProsima/Fast-RTPS/src/cpp/rtps/writer/StatefulWriter.cpp:752 (libfastrtps.so.1+0xX),2

@@ -1,2 +1,2 @@
-package,error_name,key,count
+package,error_name,stack_trace_key,count
 segv,SEGV on unknown address,rcutils_logging_get_logger_effective_level (/ros2_install/rcutils/lib/librcutils.so+0xX),1
