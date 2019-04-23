@@ -81,6 +81,7 @@ class SanitizerLogParser:
     """
 
     def __init__(self) -> None:
+        """Initialize sanitizer report sections."""
         # Holds count of errors seen for each output key.
         self._count_by_output_primary_key: Dict[SanitizerLogParserOutputPrimaryKey, int] = (
             defaultdict(int)
@@ -104,9 +105,11 @@ class SanitizerLogParser:
         return csv_f_out.getvalue()
 
     def set_package(self, package: str) -> None:
+        """Set the package name to which each sanitizer error/warning belongs."""
         self._package = package
 
     def parse_line(self, line: str) -> None:
+        """Parse colcon test log file line by line and generate report of errors/warnings."""
         line = line.rstrip()
 
         # If we have a sanitizer section starting line, start gathering lines for it.
