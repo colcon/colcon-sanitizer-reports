@@ -48,8 +48,9 @@ class SanitizerSection:
 
     After initialization, SanitizerSection includes two data members.
 
-    error_name: parsed from the header. From the examples above, this would be
-        'lock-order-inversion' or 'SEGV on unknown address'.
+    error_name:
+        parsed from the header. From the examples above, this would be 'lock-order-inversion' or
+        'SEGV on unknown address'.
 
     parts:
         Tuple of SanitizerSectionParts. See SanitizerSectionPart for definition of a section part.

@@ -19,6 +19,9 @@ import re
 from typing import Dict, List, NamedTuple, Pattern
 
 from colcon_sanitizer_reports._sanitizer_section import SanitizerSection
+from colcon_sanitizer_reports._sanitizer_section_part_stack_trace import (
+    SanitizerSectionPartStackTrace
+)
 
 # The start line of a section can be found with the following regex. Additionally, any prefix that
 # is prepended by the logging system can be extracted and be used to lstrip following section lines.
@@ -78,6 +81,9 @@ class SanitizerLogParser:
 
     count:
         The count of times the fields from the primary key occur while parsing the log.
+
+    sample_stack_trace:
+        The full output of one of the stack traces that matched the primary key.
     """
 
     def __init__(self) -> None:
@@ -86,6 +92,10 @@ class SanitizerLogParser:
         self._count_by_output_primary_key: Dict[SanitizerLogParserOutputPrimaryKey, int] = (
             defaultdict(int)
         )
+
+        self._sample_stack_trace_by_output_primary_key: (
+            Dict[SanitizerLogParserOutputPrimaryKey, SanitizerSectionPartStackTrace]
+        ) = {}
 
         # Current package output that is being parsed.
         self._package: str = ''
@@ -98,9 +108,12 @@ class SanitizerLogParser:
         """Return a csv representation of reported error/warnings."""
         csv_f_out = StringIO()
         writer = csv.writer(csv_f_out)
-        writer.writerow([*SanitizerLogParserOutputPrimaryKey._fields, 'count'])
+        writer.writerow([
+            *SanitizerLogParserOutputPrimaryKey._fields, 'count', 'sample_stack_trace'
+        ])
         for output_primary_key, count in self._count_by_output_primary_key.items():
-            writer.writerow([*output_primary_key, count])
+            sample_stack_trace = self._sample_stack_trace_by_output_primary_key[output_primary_key]
+            writer.writerow([*output_primary_key, count, '\n'.join(sample_stack_trace.lines)])
 
         return csv_f_out.getvalue()
 
@@ -142,6 +155,9 @@ class SanitizerLogParser:
                                 stack_trace_key=relevant_stack_trace.key,
                             )
                             self._count_by_output_primary_key[output_primary_key] += 1
+                            self._sample_stack_trace_by_output_primary_key[output_primary_key] = (
+                                relevant_stack_trace
+                            )
                     del self._lines_by_find_line_regex[find_line_regex]
 
                 break

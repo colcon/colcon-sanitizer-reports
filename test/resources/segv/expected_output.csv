@@ -1,2 +1,2 @@
-package,error_name,stack_trace_key,count
-segv,SEGV on unknown address,rcutils_logging_get_logger_effective_level (/ros2_install/rcutils/lib/librcutils.so+0xX),1
+package,error_name,stack_trace_key,count,sample_stack_trace
+segv,SEGV on unknown address,rcutils_logging_get_logger_effective_level (/ros2_install/rcutils/lib/librcutils.so+0xX),1,"sample stacks are samples, eg. non-deterministic so only test for existence"

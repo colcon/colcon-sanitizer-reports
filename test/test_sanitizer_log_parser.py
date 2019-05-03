@@ -14,9 +14,11 @@
 
 from csv import DictReader
 import os
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 
-from colcon_sanitizer_reports.sanitizer_log_parser import SanitizerLogParser
+from colcon_sanitizer_reports.sanitizer_log_parser import (
+    SanitizerLogParser, SanitizerLogParserOutputPrimaryKey
+)
 import pytest
 
 # Directory names of resources in test/resources. Directories should include 'input.log' and
@@ -79,18 +81,46 @@ def sanitizer_log_parser_fixture(request) -> SanitizerLogParserFixture:
     return SanitizerLogParserFixture(request.param)
 
 
-def test_csv_has_expected_line_count(sanitizer_log_parser_fixture) -> None:
+def make_output_primary_key(line: Dict[str, str]) -> SanitizerLogParserOutputPrimaryKey:
+    return SanitizerLogParserOutputPrimaryKey(**{
+        k: v for k, v in line.items()
+        if k in SanitizerLogParserOutputPrimaryKey._fields
+    })
+
+
+def test_csv_has_expected_line_count(
+        sanitizer_log_parser_fixture: SanitizerLogParserFixture
+) -> None:
     assert len(list(sanitizer_log_parser_fixture.report_csv)) == \
         len(list(sanitizer_log_parser_fixture.expected_csv))
 
 
-def test_csv_has_expected_lines(sanitizer_log_parser_fixture) -> None:
-    def make_key(line: Dict[str, str]) -> Tuple[Tuple[str, str], ...]:
-        return tuple((k, v) for k, v in line.items())
-
+@pytest.mark.parametrize('field_name', SanitizerLogParserOutputPrimaryKey._fields)
+def test_csv_has_expected_output_primary_key_field(
+        sanitizer_log_parser_fixture: SanitizerLogParserFixture, field_name: str
+) -> None:
     expected_line_by_key = {
-        make_key(line): line for line in sanitizer_log_parser_fixture.expected_csv
+        make_output_primary_key(line): line for line in sanitizer_log_parser_fixture.expected_csv
     }
 
     for line in sanitizer_log_parser_fixture.report_csv:
-        assert line == expected_line_by_key.pop(make_key(line))
+        expected_line = expected_line_by_key.pop(make_output_primary_key(line))
+        assert line[field_name] == expected_line[field_name]
+
+
+def test_csv_has_any_sample_stack_trace(
+        sanitizer_log_parser_fixture: SanitizerLogParserFixture
+) -> None:
+    for line in sanitizer_log_parser_fixture.report_csv:
+        sample_stack_trace_text = line['sample_stack_trace']
+        assert sample_stack_trace_text and not sample_stack_trace_text.isspace()
+
+
+def test_csv_sample_stack_trace_lines_look_like_stack_trace(
+        sanitizer_log_parser_fixture: SanitizerLogParserFixture
+) -> None:
+    # Check that each line in the sample_stack_trace field looks like a stack trace, eg. starts with
+    # a '#' character.
+    for line in sanitizer_log_parser_fixture.report_csv:
+        for sample_stack_trace_line in line['sample_stack_trace'].split('\n'):
+            assert sample_stack_trace_line.lstrip().startswith('#')

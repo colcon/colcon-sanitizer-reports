@@ -16,8 +16,9 @@ from collections import ChainMap, defaultdict
 import re
 from typing import List, Mapping, Pattern, Tuple
 
-from colcon_sanitizer_reports._sanitizer_section_part_stack_trace import \
+from colcon_sanitizer_reports._sanitizer_section_part_stack_trace import (
     SanitizerSectionPartStackTrace
+)
 
 
 _FIND_RELEVANT_STACK_TRACE_BEGIN_REGEXES_BY_ERROR_NAME: Mapping[str, Tuple[Pattern[str], ...]] = (
