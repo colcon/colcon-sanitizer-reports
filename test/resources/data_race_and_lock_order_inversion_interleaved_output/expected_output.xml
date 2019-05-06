@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<testsuite tests="1">
+	<testcase errors="3" name="test_communication">
+		<error count="2" location="eprosima::fastrtps::rtps::StatefulWriter::check_acked_status() /ros2_install/src/eProsima/Fast-RTPS/src/cpp/rtps/writer/StatefulWriter.cpp:752 (libfastrtps.so.1+0xX)" type="lock-order-inversion">    #X pthread_mutex_lock &lt;null&gt; (libtsan.so.0+0xX)
+    #sample stacks are samples, eg. non-deterministic so only test for existence</error>
+		<error count="1" location="eprosima::fastrtps::rtps::UDPTransportInterface::CloseInputChannel(eprosima::fastrtps::rtps::Locator_t const&amp;) /ros2_install/src/eProsima/Fast-RTPS/src/cpp/transport/UDPTransportInterface.cpp:108 (libfastrtps.so.1+0xX)" type="data_race">    #X close &lt;null&gt; (libtsan.so.0+0xX)
+    #sample stacks are samples, eg. non-deterministic so only test for existence</error>
+		<error count="1" location="eprosima::fastrtps::rtps::UDPTransportInterface::Receive(eprosima::fastrtps::rtps::UDPChannelResource*, unsigned char*, unsigned int, unsigned int&amp;, eprosima::fastrtps::rtps::Locator_t&amp;) /ros2_install/src/eProsima/Fast-RTPS/src/cpp/transport/UDPTransportInterface.cpp:412 (libfastrtps.so.1+0xX)" type="data_race">    #X recvmsg &lt;null&gt; (libtsan.so.0+0xX)
+    #sample stacks are samples, eg. non-deterministic so only test for existence</error>
+	</testcase>
+</testsuite>

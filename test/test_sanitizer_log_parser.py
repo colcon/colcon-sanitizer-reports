@@ -15,6 +15,7 @@
 from csv import DictReader
 import os
 from typing import Dict, Optional
+import xml.etree.cElementTree as eTree
 
 from colcon_sanitizer_reports.sanitizer_log_parser import (
     SanitizerLogParser, SanitizerLogParserOutputPrimaryKey
@@ -54,6 +55,10 @@ class SanitizerLogParserFixture:
         return os.path.join(self.resource_path, 'expected_output.csv')
 
     @property
+    def expected_output_xml_path(self) -> str:
+        return os.path.join(self.resource_path, 'expected_output.xml')
+
+    @property
     def sanitizer_log_parser(self) -> SanitizerLogParser:
         if self._sanitizer_log_parser is None:
             parser = SanitizerLogParser()
@@ -74,6 +79,15 @@ class SanitizerLogParserFixture:
     def expected_csv(self) -> DictReader:
         with open(self.expected_output_csv_path, 'r') as expected_output_csv_f_in:
             return DictReader(expected_output_csv_f_in.read().split('\n'))
+
+    @property
+    def report_xml(self) -> eTree.Element:
+        return eTree.fromstring(self.sanitizer_log_parser.get_xml())
+
+    @property
+    def expected_xml(self) -> eTree.Element:
+        with open(self.expected_output_xml_path, 'r') as expected_output_xml_f_in:
+            return eTree.parse(expected_output_xml_f_in).getroot()
 
 
 @pytest.fixture(params=_RESOURCE_NAMES)
@@ -124,3 +138,30 @@ def test_csv_sample_stack_trace_lines_look_like_stack_trace(
     for line in sanitizer_log_parser_fixture.report_csv:
         for sample_stack_trace_line in line['sample_stack_trace'].split('\n'):
             assert sample_stack_trace_line.lstrip().startswith('#')
+
+
+def test_xml_has_expected_testcases(sanitizer_log_parser_fixture) -> None:
+    assert sanitizer_log_parser_fixture.report_xml.get('tests') == \
+        sanitizer_log_parser_fixture.expected_xml.get('tests')
+    assert len(sanitizer_log_parser_fixture.report_xml.findall('testcase')) == \
+        len(sanitizer_log_parser_fixture.expected_xml.findall('testcase'))
+
+
+def test_xml_has_expected_testcase_attributes(sanitizer_log_parser_fixture) -> None:
+    for case in sanitizer_log_parser_fixture.report_xml.findall('testcase'):
+        if case is not None:
+            assert len(case.get('name')) > 0
+            assert len(case.get('errors')) > 0
+
+            for error in case.findall('error'):
+                if error is not None:
+                    assert len(error.text) > 0
+                    assert error.text.lstrip().startswith('#')
+
+
+def test_xml_has_expected_errors(sanitizer_log_parser_fixture) -> None:
+    case_reported = sanitizer_log_parser_fixture.report_xml.find('testcase')
+    case_actual = sanitizer_log_parser_fixture.expected_xml.find('testcase')
+
+    if (case_actual is not None) and (case_reported is not None):
+        assert len(case_reported.findall('error')) == len(case_actual.findall('error'))

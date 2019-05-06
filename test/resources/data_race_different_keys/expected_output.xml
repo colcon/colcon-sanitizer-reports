@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<testsuite tests="1">
+        <testcase errors="2" name="test_communication">
+                <error count="1" location="eprosima::fastrtps::rtps::UDPTransportInterface::CloseInputChannel(eprosima::fastrtps::rtps::Locator_t const&amp;) /ros2_ws/src/eProsima/Fast-RTPS/src/cpp/transp
+ort/UDPTransportInterface.cpp:108 (libfastrtps.so.1+0xX)" type="data_race">
+    #sample stacks are samples, eg. non-deterministic so only test for existence</error>
+                <error count="1" location="eprosima::fastrtps::rtps::UDPTransportInterface::Receive(eprosima::fastrtps::rtps::UDPChannelResource*, unsigned char*, unsigned int, unsigned int&amp;, eprosima::fastrtps::rtps::Locator_t&amp;) /ros2_ws/src/eProsima/Fast-RTPS/src/cpp/transport/UDPTransportInterface.cpp:412 (libfastrtps.so.1+0xX)" type="data_race">    #X unsigned long asio::datagram_socket_service&lt;asio::ip::udp&gt;::receive_from&lt;asio::mutable_buffers_1&gt;(asio::detail::reactive_socket_service&lt;asio::ip::udp&gt;::implementation_type&amp;, asio::mutable_buffers_1 const&amp;, asio::ip::basic_endpoint&lt;asio::ip::udp&gt;&amp;, int, std::error_code&amp;) /usr/include/asio/datagram_socket_service.hpp:395 (libfastrtps.so.1+0xX)
+    #sample stacks are samples, eg. non-deterministic so only test for existence</error>
+        </testcase>
+</testsuite>

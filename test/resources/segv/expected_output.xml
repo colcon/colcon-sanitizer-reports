@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<testsuite tests="1">
+        <testcase errors="1" name="test_communication">
+                <error count="1" location="rcutils_logging_get_logger_effective_level (/ros2_install/rcutils/lib/librcutils.so+0xX)" type="SEGV_on_unknown_address">    #X 0xX  (/lib/x86_64-linux-gnu/libc.so.6+0xX)
+    #sample stacks are samples, eg. non-deterministic so only test for existence</error>
+        </testcase>
+</testsuite>
