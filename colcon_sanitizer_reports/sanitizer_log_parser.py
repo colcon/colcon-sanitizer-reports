@@ -84,7 +84,13 @@ class SanitizerLogParser:
 
     sample_stack_trace:
         The full output of one of the stack traces that matched the primary key.
+
+    XML output is a xUnit-style Jenkins compatible string. Packages present in
+    SanitizerLogParserOutputPrimaryKey are `testcases` in the xml string, and each sanitizer
+    warning and error is an `error`. Stack trace key and error count are attributes of the error.
     """
+
+    from colcon_sanitizer_reports.xml_output_generator import XmlOutputGenerator
 
     def __init__(self) -> None:
         """Initialize sanitizer report sections."""
@@ -116,6 +122,11 @@ class SanitizerLogParser:
             writer.writerow([*output_primary_key, count, '\n'.join(sample_stack_trace.lines)])
 
         return csv_f_out.getvalue()
+
+    def get_xml(self) -> str:
+        """Return a xml representation of reported errors/warnings."""
+        return self.XmlOutputGenerator(self._count_by_output_primary_key,
+                                       self._sample_stack_trace_by_output_primary_key).xml_string
 
     def set_package(self, package: str) -> None:
         """Set the package name to which each sanitizer error/warning belongs."""
