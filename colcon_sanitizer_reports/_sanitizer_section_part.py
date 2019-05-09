@@ -100,7 +100,9 @@ class SanitizerSectionPart:
         Tuple of all stack traces from the section part that are relevant for generating the report.
     """
 
-    relevant_stack_traces: Tuple[SanitizerSectionPartStackTrace, ...]
+    @property
+    def relevant_stack_traces(self) -> Tuple[SanitizerSectionPartStackTrace, ...]:
+        return self._relevant_stack_traces
 
     def __init__(self, *, error_name: str, lines: Tuple[str, ...]) -> None:
         """Gather relevant sanitizer stack traces."""
@@ -143,4 +145,4 @@ class SanitizerSectionPart:
                     SanitizerSectionPartStackTrace(lines=tuple(relevant_stack_trace_lines))
                 )
 
-        self.relevant_stack_traces = tuple(relevant_stack_traces)
+        self._relevant_stack_traces = tuple(relevant_stack_traces)

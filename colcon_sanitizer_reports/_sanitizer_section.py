@@ -56,8 +56,13 @@ class SanitizerSection:
         Tuple of SanitizerSectionParts. See SanitizerSectionPart for definition of a section part.
     """
 
-    error_name: str
-    parts: Tuple[SanitizerSectionPart, ...]
+    @property
+    def error_name(self) -> str:
+        return self._error_name
+
+    @property
+    def parts(self) -> Tuple[SanitizerSectionPart, ...]:
+        return self._parts
 
     def __init__(self, *, lines: Tuple[str, ...]) -> None:
         """Construct the sanitizer section."""
@@ -66,7 +71,7 @@ class SanitizerSection:
         assert match is not None, (
             'Could not find error name in section header: {lines[0]}'.format(**locals())
         )
-        self.error_name = match.groupdict()['error_name']
+        self._error_name = match.groupdict()['error_name']
 
         # Divide into parts. Subsections begin with a line that is not indented.
         part_lines: List[str] = []
@@ -88,4 +93,4 @@ class SanitizerSection:
                 SanitizerSectionPart(error_name=self.error_name, lines=tuple(part_lines))
             )
 
-        self.parts = tuple(sub_sections)
+        self._parts = tuple(sub_sections)

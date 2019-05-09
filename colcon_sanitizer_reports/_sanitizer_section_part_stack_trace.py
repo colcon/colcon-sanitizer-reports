@@ -55,8 +55,13 @@ class SanitizerSectionPartStackTrace:
         The lines that make up the stack trace.
     """
 
-    key: str
-    lines: Tuple[str, ...]
+    @property
+    def key(self) -> str:
+        return self._key
+
+    @property
+    def lines(self) -> Tuple[str, ...]:
+        return self._lines
 
     def __init__(self, lines: Tuple[str, ...]) -> None:
         """Find and assign stack trace key."""
@@ -69,5 +74,5 @@ class SanitizerSectionPartStackTrace:
 
         assert key is not None, 'Could not find key in given stack trace lines.'
 
-        self.key = key
-        self.lines = lines
+        self._key = key
+        self._lines = lines
