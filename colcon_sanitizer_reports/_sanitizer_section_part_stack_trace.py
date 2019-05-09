@@ -47,9 +47,9 @@ class SanitizerSectionPartStackTrace:
     After initialization, SanitizerSectionPartStackTrace includes the following data members.
 
     key:
-        This is the first line in the stack trace that comes from ros2 code (#1 in the example
-        above). Some information is masked or omitted in the key so that keys of multiple stack
-        traces that are reproductions of each other are guaranteed to match.
+        Key parsed from the first line in the stack trace that comes from ros2 code (#1 in the
+        example above). Some information is masked or omitted in the key so that keys of multiple
+        stack traces that are reproductions of each other are guaranteed to match.
 
     lines:
         The lines that make up the stack trace.
@@ -57,10 +57,12 @@ class SanitizerSectionPartStackTrace:
 
     @property
     def key(self) -> str:
+        """Key parsed from first line in the stack trace that comes from ros2 code."""
         return self._key
 
     @property
     def lines(self) -> Tuple[str, ...]:
+        """Lines that make up the stack trace."""
         return self._lines
 
     def __init__(self, lines: Tuple[str, ...]) -> None:

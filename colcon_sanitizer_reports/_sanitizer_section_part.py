@@ -97,11 +97,12 @@ class SanitizerSectionPart:
     After initialization, SanitizerSectionPart includes the following data member.
 
     relevant_stack_traces:
-        Tuple of all stack traces from the section part that are relevant for generating the report.
+        Stack traces from the section part that are relevant for generating the report.
     """
 
     @property
     def relevant_stack_traces(self) -> Tuple[SanitizerSectionPartStackTrace, ...]:
+        """Stack traces from the section part that are relevant for generating the report."""
         return self._relevant_stack_traces
 
     def __init__(self, *, error_name: str, lines: Tuple[str, ...]) -> None:

@@ -49,19 +49,22 @@ class SanitizerSection:
     After initialization, SanitizerSection includes two data members.
 
     error_name:
-        parsed from the header. From the examples above, this would be 'lock-order-inversion' or
-        'SEGV on unknown address'.
+        Error name parsed from the header. From the examples above, this would be
+        'lock-order-inversion' or 'SEGV on unknown address'.
 
     parts:
-        Tuple of SanitizerSectionParts. See SanitizerSectionPart for definition of a section part.
+        Sanitizer section parts parsed from lines. See SanitizerSectionPart for definition of a
+        sanitizer section part.
     """
 
     @property
     def error_name(self) -> str:
+        """Error name parsed from the header."""
         return self._error_name
 
     @property
     def parts(self) -> Tuple[SanitizerSectionPart, ...]:
+        """Sanitizer section parts parsed from lines."""
         return self._parts
 
     def __init__(self, *, lines: Tuple[str, ...]) -> None:
