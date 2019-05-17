@@ -16,8 +16,9 @@ from collections import ChainMap, defaultdict
 import re
 from typing import List, Mapping, Pattern, Tuple
 
-from colcon_sanitizer_reports._sanitizer_section_part_stack_trace import \
+from colcon_sanitizer_reports._sanitizer_section_part_stack_trace import (
     SanitizerSectionPartStackTrace
+)
 
 
 _FIND_RELEVANT_STACK_TRACE_BEGIN_REGEXES_BY_ERROR_NAME: Mapping[str, Tuple[Pattern[str], ...]] = (
@@ -96,10 +97,13 @@ class SanitizerSectionPart:
     After initialization, SanitizerSectionPart includes the following data member.
 
     relevant_stack_traces:
-        Tuple of all stack traces from the section part that are relevant for generating the report.
+        Stack traces from the section part that are relevant for generating the report.
     """
 
-    relevant_stack_traces: Tuple[SanitizerSectionPartStackTrace, ...]
+    @property
+    def relevant_stack_traces(self) -> Tuple[SanitizerSectionPartStackTrace, ...]:
+        """Stack traces from the section part that are relevant for generating the report."""
+        return self._relevant_stack_traces
 
     def __init__(self, *, error_name: str, lines: Tuple[str, ...]) -> None:
         """Gather relevant sanitizer stack traces."""
@@ -142,4 +146,4 @@ class SanitizerSectionPart:
                     SanitizerSectionPartStackTrace(lines=tuple(relevant_stack_trace_lines))
                 )
 
-        self.relevant_stack_traces = tuple(relevant_stack_traces)
+        self._relevant_stack_traces = tuple(relevant_stack_traces)

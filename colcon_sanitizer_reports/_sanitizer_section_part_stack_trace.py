@@ -25,7 +25,7 @@ _FIND_KEY_SUB_REGEX = re.compile(r'0x[\da-f]+')
 
 
 class SanitizerSectionPartStackTrace:
-    """Parses key from stack trace lines of a single sanitizer section part stack trace.
+    """Parses key from a single sanitizer section part stack trace and stores stack trace lines.
 
     A sanitizer section part stack trace is a group of contiguous lines in a sanitizer section part
     that make a typical stack trace.
@@ -44,15 +44,26 @@ class SanitizerSectionPartStackTrace:
 
     This examples shows a stack trace with fifteen lines.
 
-    After initialization, SanitizerSectionPartStackTrace includes the following data member.
+    After initialization, SanitizerSectionPartStackTrace includes the following data members.
 
     key:
-        This is the first line in the stack trace that comes from ros2 code (#1 in the example
-        above). Some information is masked or omitted in the key so that keys of multiple stack
-        traces that are reproductions of each other are guaranteed to match.
+        Key parsed from the first line in the stack trace that comes from ros2 code (#1 in the
+        example above). Some information is masked or omitted in the key so that keys of multiple
+        stack traces that are reproductions of each other are guaranteed to match.
+
+    lines:
+        The lines that make up the stack trace.
     """
 
-    key: str
+    @property
+    def key(self) -> str:
+        """Key parsed from first line in the stack trace that comes from ros2 code."""
+        return self._key
+
+    @property
+    def lines(self) -> Tuple[str, ...]:
+        """Lines that make up the stack trace."""
+        return self._lines
 
     def __init__(self, lines: Tuple[str, ...]) -> None:
         """Find and assign stack trace key."""
@@ -65,4 +76,5 @@ class SanitizerSectionPartStackTrace:
 
         assert key is not None, 'Could not find key in given stack trace lines.'
 
-        self.key = key
+        self._key = key
+        self._lines = lines
