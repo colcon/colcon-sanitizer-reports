@@ -38,7 +38,6 @@ class SanitizerReportEventHandler(EventHandlerExtensionPoint):
     def __call__(self, event) -> None:
         """Handle the colcon event appropriately."""
         data = event[0]
-        logger.debug('Received %s event', data.__class__.__name__)
 
         if isinstance(data, JobEnded):
             self._handle(event)
@@ -54,7 +53,7 @@ class SanitizerReportEventHandler(EventHandlerExtensionPoint):
                 for line in in_file:
                     self._log_parser.parse_line(line)
         except IOError:
-            logger.info('Could not open sanitizer error log file')
+            logger.info('Could not open stdout_stderr.log file')
 
         with open('sanitizer_report.csv', 'w') as report_csv_f_out:
             report_csv_f_out.write(self._log_parser.get_csv())
