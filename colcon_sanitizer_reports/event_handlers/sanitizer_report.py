@@ -26,14 +26,14 @@ logger = colcon_logger.getChild(__name__)
 class SanitizerReportEventHandler(EventHandlerExtensionPoint):
     """Generate a report of all Sanitizer ERRORs and WARNINGs."""
 
-    ENABLED_BY_DEFAULT: bool = False
+    ENABLED_BY_DEFAULT = False  # type: bool
 
     def __init__(self) -> None:
         """Initialize sanitizer log parser."""
         super().__init__()
         satisfies_version(EventHandlerExtensionPoint.EXTENSION_POINT_VERSION, '^1.0')
-        self.enabled: bool = SanitizerReportEventHandler.ENABLED_BY_DEFAULT
-        self._log_parser: SanitizerLogParser = SanitizerLogParser()
+        self.enabled = SanitizerReportEventHandler.ENABLED_BY_DEFAULT  # type: bool
+        self._log_parser = SanitizerLogParser()  # type: SanitizerLogParser
 
     def __call__(self, event) -> None:
         """Handle the colcon event appropriately."""
@@ -44,7 +44,7 @@ class SanitizerReportEventHandler(EventHandlerExtensionPoint):
 
     def _handle(self, event) -> None:
         """Handle JobEnded event and parse the test log file."""
-        job: JobEnded = event[1]
+        job = event[1]  # type: JobEnded
         self._log_parser.set_package(job.identifier)
 
         try:

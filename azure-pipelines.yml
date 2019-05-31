@@ -9,6 +9,9 @@ trigger:
 strategy:
   maxParallel: 3
   matrix:
+    Ubuntu-Py35:
+      imageName: 'ubuntu-latest'
+      python.version: '3.5'
     Ubuntu-Py36:
       imageName: 'ubuntu-latest'
       python.version: '3.6'

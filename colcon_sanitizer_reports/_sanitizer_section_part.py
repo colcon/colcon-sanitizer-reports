@@ -21,7 +21,7 @@ from colcon_sanitizer_reports._sanitizer_section_part_stack_trace import (
 )
 
 
-_FIND_RELEVANT_STACK_TRACE_BEGIN_REGEXES_BY_ERROR_NAME: Mapping[str, Tuple[Pattern[str], ...]] = (
+_FIND_RELEVANT_STACK_TRACE_BEGIN_REGEXES_BY_ERROR_NAME = (
     ChainMap({
         # There are two relevant stack traces involved in a "data race" section part. Their headers
         # match the following patterns.
@@ -44,7 +44,7 @@ _FIND_RELEVANT_STACK_TRACE_BEGIN_REGEXES_BY_ERROR_NAME: Mapping[str, Tuple[Patte
         # part, so we place no restrictions on the pattern of the header. We just find the first
         # stack trace.
     }, defaultdict(lambda: (re.compile(r'^.*$'),)))
-)
+)  # type: Mapping[str, Tuple[Pattern[str], ...]]
 
 # Stack trace lines follow a "stack trace begin" line and match the following pattern.
 _FIND_STACK_TRACE_LINE_REGEX = re.compile(r'^\s+#\d+\s+.*$')
@@ -107,7 +107,7 @@ class SanitizerSectionPart:
 
     def __init__(self, *, error_name: str, lines: Tuple[str, ...]) -> None:
         """Gather relevant sanitizer stack traces."""
-        relevant_stack_traces: List[SanitizerSectionPartStackTrace] = []
+        relevant_stack_traces = []  # type: List[SanitizerSectionPartStackTrace]
         find_relevant_stack_trace_begin_regexes = (
             _FIND_RELEVANT_STACK_TRACE_BEGIN_REGEXES_BY_ERROR_NAME[error_name]
         )
@@ -129,7 +129,7 @@ class SanitizerSectionPart:
 
             # Starting with the next line, gather lines that match the stack trace pattern until one
             # doesn't match.
-            relevant_stack_trace_lines: List[str] = []
+            relevant_stack_trace_lines = []  # type: List[str]
             for line_i, line in enumerate(lines[line_i + 1:], start=line_i + 1):
                 match = _FIND_STACK_TRACE_LINE_REGEX.match(line)
                 if match is not None:
