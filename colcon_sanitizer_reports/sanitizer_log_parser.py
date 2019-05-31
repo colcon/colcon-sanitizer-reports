@@ -34,7 +34,16 @@ _FIND_SECTION_START_LINE_REGEX = \
 _FIND_SECTION_END_LINE_REGEX = re.compile(r'^(?P<prefix>.*)(SUMMARY: .*Sanitizer: .*)$')
 
 
-class SanitizerLogParserOutputPrimaryKey(NamedTuple):
+SanitizerLogParserOutputPrimaryKey = NamedTuple(
+    'SanitizerLogParserOutputPrimaryKey',
+    [
+        ('package', str),
+        ('error_name', str),
+        ('stack_trace_key', str)
+    ]
+)
+
+SanitizerLogParserOutputPrimaryKey.__doc__ = (
     """SanitizerLogParser report output is keyed on these fields.
 
     This is the primary key of the report. Each unique combination of these fields is reported on
@@ -55,10 +64,7 @@ class SanitizerLogParserOutputPrimaryKey(NamedTuple):
         SanitizerLogParserOutputPrimaryKeys. See SanitizerSectionPart and
         SanitizerSectionPartStackTrace for more details.
     """
-
-    package: str
-    error_name: str
-    stack_trace_key: str
+)
 
 
 class SanitizerLogParser:
@@ -95,20 +101,18 @@ class SanitizerLogParser:
     def __init__(self) -> None:
         """Initialize sanitizer report sections."""
         # Holds count of errors seen for each output key.
-        self._count_by_output_primary_key: Dict[SanitizerLogParserOutputPrimaryKey, int] = (
-            defaultdict(int)
-        )
+        self._count_by_output_primary_key = defaultdict(int) \
+            # type: Dict[SanitizerLogParserOutputPrimaryKey, int]
 
-        self._sample_stack_trace_by_output_primary_key: (
-            Dict[SanitizerLogParserOutputPrimaryKey, SanitizerSectionPartStackTrace]
-        ) = {}
+        self._sample_stack_trace_by_output_primary_key = {} \
+            # type: Dict[SanitizerLogParserOutputPrimaryKey, SanitizerSectionPartStackTrace]
 
         # Current package output that is being parsed.
-        self._package: str = ''
+        self._package = ''  # type: str
 
         # We keep lines for partially-gathered sanitizer sections here. Incoming lines that match
         # one of the find_line_regexes is appended to the associated list of lines.
-        self._lines_by_find_line_regex: Dict[Pattern, List[str]] = {}
+        self._lines_by_find_line_regex = {}  # type: Dict[Pattern, List[str]]
 
     def get_csv(self) -> str:
         """Return a csv representation of reported error/warnings."""

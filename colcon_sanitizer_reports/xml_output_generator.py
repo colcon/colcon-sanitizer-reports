@@ -27,23 +27,17 @@ from colcon_sanitizer_reports.sanitizer_log_parser import SanitizerLogParserOutp
 class XmlOutputGenerator:
     """Converts the sanitizer error report into a xUnit compatible xml test report."""
 
-    _count_by_error: Dict[SanitizerLogParserOutputPrimaryKey, int]
-    _stack_trace_by_error: Dict[SanitizerLogParserOutputPrimaryKey,
-                                SanitizerSectionPartStackTrace]
-    _packages: Set[str]
-    _xml_tree: eTree.ElementTree
-    _xml_string: str
-
     def __init__(self,
                  error_map: Dict[SanitizerLogParserOutputPrimaryKey, int],
                  stack_trace_map: Dict[SanitizerLogParserOutputPrimaryKey,
                                        SanitizerSectionPartStackTrace]):
         """Convert sanitizer error into xml representation."""
-        self._count_by_error = error_map
-        self._stack_trace_by_error = stack_trace_map
-        self._packages: Set[str] = self._get_unique_packages()
-        testsuite: eTree.Element = self._create_error_report(self._create_results_base())
-        self._xml_string = self.encode_and_pretty_print(testsuite)
+        self._count_by_error = error_map  # type: Dict[SanitizerLogParserOutputPrimaryKey, int]
+        self._stack_trace_by_error = stack_trace_map \
+            # type: Dict[SanitizerLogParserOutputPrimaryKey, SanitizerSectionPartStackTrace]
+        self._packages = self._get_unique_packages()  # type: Set[str]
+        testsuite = self._create_error_report(self._create_results_base())  # type: eTree.Element
+        self._xml_string = self.encode_and_pretty_print(testsuite)  # type: str
 
     def _get_unique_packages(self) -> Set[str]:
         return {str(key[0]) for key in self._count_by_error.keys()}
@@ -52,15 +46,15 @@ class XmlOutputGenerator:
         testsuite = eTree.Element('testsuite', {'tests': str(len(self._packages))})
 
         # Create elements for each test case (package)
-        testcases: Dict[str, eTree.Element] = {}
+        testcases = {}  # type: Dict[str, eTree.Element]
         for package in self._packages:
             testcases[package] = eTree.SubElement(testsuite, 'testcase', {'name': str(package)})
 
         return testsuite
 
     def _create_error_report(self, base_element: eTree.Element) -> eTree.Element:
-        error_count_by_package: Dict[str, int] = defaultdict(int)
-        testcases: Dict[str, eTree.Element] = defaultdict()
+        error_count_by_package = defaultdict(int)  # type: Dict[str, int]
+        testcases = defaultdict()  # type: Dict[str, eTree.Element]
         for case in base_element.findall('testcase'):
             testcases[case.get('name')] = case
 

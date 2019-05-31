@@ -38,7 +38,7 @@ class SanitizerLogParserFixture:
 
     def __init__(self, resource_name: str) -> None:
         self.resource_name = resource_name
-        self._sanitizer_log_parser: Optional[SanitizerLogParser] = None
+        self._sanitizer_log_parser = None  # type: Optional[SanitizerLogParser]
 
     @property
     def resource_path(self) -> str:

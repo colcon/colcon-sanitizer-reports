@@ -77,8 +77,8 @@ class SanitizerSection:
         self._error_name = match.groupdict()['error_name']
 
         # Divide into parts. Subsections begin with a line that is not indented.
-        part_lines: List[str] = []
-        sub_sections: List[SanitizerSectionPart] = []
+        part_lines = []  # type: List[str]
+        sub_sections = []  # type: List[SanitizerSectionPart]
         for line in lines:
             # Check if this the beginning of a new part and we collected lines for a previous part.
             # If so, create the previous part and start collecting for the new part.
