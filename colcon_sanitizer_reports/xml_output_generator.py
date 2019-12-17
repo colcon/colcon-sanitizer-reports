@@ -56,8 +56,11 @@ class XmlOutputGenerator:
         error_count_by_package = defaultdict(int)  # type: Dict[str, int]
         testcases = defaultdict()  # type: Dict[str, eTree.Element]
         for case in base_element.findall('testcase'):
+            case_name = case.get('name', None)
+            if not case_name:
+                raise KeyError("Key 'name' for test case in XML tree does not exist")
             # Explicitly cast to string for type compatibility
-            testcases[str(case.get('name'))] = case
+            testcases[str(case_name)] = case
 
         # Gather error details for all packages
         for key, count in self._count_by_error.items():
