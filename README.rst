@@ -176,7 +176,7 @@ using the following command:
 
     # We exclude ament packages as they are part of the buildchain / tooling
     # and not part of ROS2.
-    $ colcon list -g --packages-skip-regex 'ament.*' --packages-up-to rcl
+    $ colcon graph --packages-skip-regex 'ament.*' --packages-up-to rcl
     fastcdr                               +     *                      * *  * *............
     gtest_vendor                           +     *    . .   ...  . ..                    ..
     osrf_pycommon                           +     *   .     ...                           .
