@@ -8,7 +8,7 @@ Pre-Requisites
 --------------
 
 -  Install all ROS 2 build dependencies by following the `official instructions
-   <https://index.ros.org/doc/ros2/Installation/Linux-Development-Setup/>`__.
+   <https://docs.ros.org/en/rolling/Installation/Alternatives/Ubuntu-Development-Setup.html>`__.
 -  Install and enable Colcon mixin package:
 
 .. code:: bash
